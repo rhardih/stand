@@ -1,5 +1,9 @@
 language:
   - generic
+addons:
+  apt:
+    packages:
+      docker-ce
 services:
   - docker
 script:
