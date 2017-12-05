@@ -7,5 +7,6 @@ addons:
 services:
   - docker
 script:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   - docker build -t rhardih/stand:latest .
   - docker push rhardih/stand:latest
