@@ -15,7 +15,7 @@
 # /android-ndk-r14b-linux-x86_64.zip - becd161da6ed9a823e25be5c02955d9cbca1dbeb
 # /android-ndk-r15c-linux-x86_64.zip - 0bf02d4e8b85fd770fd7b9b2cdec57f9441f27a2
 
-FROM ubuntu:latest AS full-ndk
+FROM ubuntu:latest AS ndk
 
 ARG NDK_URL=https://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip
 ARG NDK_SHA=f692681b007071103277f6edc6f91cb5c5494a32
@@ -48,4 +48,4 @@ ARG PLATFORM=android-21
 RUN apt-get update && apt-get -y install \
   build-essential
 
-COPY --from=full-ndk /$PLATFORM-toolchain /$PLATFORM-toolchain
+COPY --from=ndk /$PLATFORM-toolchain /$PLATFORM-toolchain
