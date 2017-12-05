@@ -16,3 +16,10 @@ following manner:
 E.g. to get the container for platform `android-21` from the `r10e` platform:
 
 `docker pull rhardih/stand:r10e-a21-arm-linux-androideabi-4.9`
+
+
+## Info
+
+Docker hub page:
+
+[https://hub.docker.com/r/rhardih/stand](https://hub.docker.com/r/rhardih/stand)
