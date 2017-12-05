@@ -14,6 +14,8 @@ case "$NDK_URL" in
   *r14b*)
     ;&
   *r15c*)
+    ;&
+  *r16*)
     apt-get -y install python
     ;&
 esac
