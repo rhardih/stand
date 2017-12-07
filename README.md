@@ -28,6 +28,11 @@ E.g. to get the container for platform `android-21` from the `r10e` NDK:
 
 ## Info
 
-Docker hub page:
-
-[https://hub.docker.com/r/rhardih/stand](https://hub.docker.com/r/rhardih/stand)
+If a certain combination of NDK version, platform version and toolchain is not
+currently available on Docker Hub, trigger a new build using
+[by](https://github.com/rhardih/by) at
+[stand.rhardih.io](https://stand.rhardih.io), go grab a cup of coffee and wait
+till [Travis](https://travis-ci.org/rhardih/stand) has done building and pushing
+the new image. Check [Docker Hub](https://hub.docker.com/r/rhardih/stand/tags)
+after the build is done. If all went well, the new image should be tagged and
+listed amongst the others.
