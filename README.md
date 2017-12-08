@@ -26,16 +26,24 @@ E.g. to get the container for platform `android-21` from the `r10e` NDK:
 `docker pull rhardih/stand:r10e-a21-arm-linux-androideabi-4.9`
 
 
-## Info
+## By
 
-If a certain combination of NDK version, platform version and toolchain is not
-currently available on Docker Hub, trigger a new build using
-[by](https://github.com/rhardih/by) at
-[stand.rhardih.io](https://stand.rhardih.io), go grab a cup of coffee and wait
-till [Travis](https://travis-ci.org/rhardih/stand) has done building and pushing
-the new image. Check [Docker Hub](https://hub.docker.com/r/rhardih/stand/tags)
-after the build is done. If all went well, the new image should be tagged and
-listed amongst the others.
+In case a certain combination of NDK version, platform version and toolchain is not
+currently available on Docker Hub, you can use this small companion site, to trigger a new build:
+
+[stand.rhardih.io](https://stand.rhardih.io)
+
+It's a small [Sinatra](http://sinatrarb.com) application deployed to Heroku.
+Source available at [by](https://github.com/rhardih/by).
+
+Once you've triggered a build, go grab a cup of coffee and wait till [Travis](https://travis-ci.org/rhardih/stand) is done building and subsequently pushing
+the new image to Docker Hub.
+
+Check the tags on [https://hub.docker.com/r/rhardih/stand/tags](https://hub.docker.com/r/rhardih/stand/tags) after the build is done.
+
+If all went well, the new image should be tagged and listed amongst the others.
+
+Profit!
 
 ## Disclaimer
 
