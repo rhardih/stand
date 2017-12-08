@@ -36,3 +36,10 @@ till [Travis](https://travis-ci.org/rhardih/stand) has done building and pushing
 the new image. Check [Docker Hub](https://hub.docker.com/r/rhardih/stand/tags)
 after the build is done. If all went well, the new image should be tagged and
 listed amongst the others.
+
+## Disclaimer
+
+Please note that the use the Android NDK is subject to the Terms and Conditions
+laid forth by Google. For the full text, please see:
+
+[https://developer.android.com/ndk/downloads/](https://developer.android.com/ndk/downloads/index.html)
