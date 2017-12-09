@@ -19,12 +19,15 @@ architecture is bundled, saving some much valued space and bandwidth.
 
 Each version is tagged according to the following naming convention:
 
-`<ndk>-<platform>-<toolchain>`
+`rhardih/stand:<ndk>--<platform>--<toolchain>`
 
-E.g. to get the container for platform `android-21` from the `r10e` NDK:
+The double dash is a bit of an eyesore, but since docker tags can only contain
+underscores, periods and dashes as special characters, and since toolchain names
+contain a mix of all three, this is a necessary evil.
 
-`docker pull rhardih/stand:r10e-a21-arm-linux-androideabi-4.9`
+E.g. to pull an `arm` container for platform `android-21` from the `r10e` NDK:
 
+`docker pull rhardih/stand:r10e--android-21--arm-linux-androideabi-4.9`
 
 ## By
 
