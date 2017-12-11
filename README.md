@@ -38,7 +38,7 @@ In the container, the toolchain is located at the root, e.g.:
 In case a certain combination of NDK version, platform version and toolchain is not
 currently available on Docker Hub, you can use this small companion site, to trigger a new build:
 
-[stand.rhardih.io](https://stand.rhardih.io)
+[standby.rhardih.io](https://standby.rhardih.io)
 
 It's a small [Sinatra](http://sinatrarb.com) application deployed to Heroku.
 Source available at [by](https://github.com/rhardih/by).
