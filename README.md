@@ -29,6 +29,10 @@ E.g. to pull an `arm` container for platform `android-21` from the `r10e` NDK:
 
 `docker pull rhardih/stand:r10e--android-21--arm-linux-androideabi-4.9`
 
+In the container, the toolchain is located at the root, e.g.:
+
+`/android-21-toolchain`
+
 ## By
 
 In case a certain combination of NDK version, platform version and toolchain is not
