@@ -30,14 +30,13 @@ ARG TOOLCHAIN=arm-linux-androideabi-4.9
 
 RUN apt-get update && apt-get -y install \
   file \
-  wget
+  wget \
+  unzip \
+  python
 
 RUN wget -O ndk.zip --progress=dot:giga $NDK_URL
 
 RUN echo "$NDK_SHA ndk.zip" | sha1sum -c
-
-RUN apt-get -y install \
-  unzip
 
 RUN unzip -q ndk.zip
 
