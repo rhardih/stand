@@ -33,6 +33,25 @@ In the container, the toolchain is located at the root, e.g.:
 
 `/android-21-toolchain`
 
+### Android platform api level
+
+|Code name|Version|API level|
+|--- |--- |--- |
+|Pie|9|API level 28|
+|Oreo|8.1.0|API level 27|
+|Oreo|8.0.0|API level 26|
+|Nougat|7.1|API level 25|
+|Nougat|7.0|API level 24|
+|Marshmallow|6.0|API level 23|
+|Lollipop|5.1|API level 22|
+|Lollipop|5.0|API level 21|
+
+E.g. *android-21*, is the platform to choose for building for Android 5.0.
+
+The full list can be found here:
+
+https://source.android.com/setup/start/build-numbers
+
 ## By
 
 In case a certain combination of NDK version, platform version and toolchain is not
