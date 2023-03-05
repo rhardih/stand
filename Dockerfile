@@ -32,7 +32,7 @@ RUN apt update && apt -y install \
   file \
   wget \
   unzip \
-  python
+  python2
 
 RUN wget -O ndk.zip --progress=dot:giga $NDK_URL
 
