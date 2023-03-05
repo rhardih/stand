@@ -10,13 +10,10 @@ RUN apt update && apt -y install \
   unzip \
   python2
 
-COPY get-ndk.sh make-stc.sh .
+COPY ndk.sh .
 
 # Download and unzip NDK
-RUN /bin/bash ./get-ndk.sh
-
-# Make standalone toolchain
-RUN /bin/bash ./make-stc.sh
+RUN ./ndk.sh
 
 # Final stage
 

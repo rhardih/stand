@@ -33,21 +33,50 @@ set -euxo pipefail
 
 declare -A sha_sums
 
-sha_sums["r18b"]="500679655da3a86aecf67007e8ab230ea9b4dd7b"
-sha_sums["r17c"]="12cacc70c3fd2f40574015631c00f41fb8a39048"
-sha_sums["r16b"]="42aa43aae89a50d1c66c3f9fdecd676936da6128"
-sha_sums["r15c"]="0bf02d4e8b85fd770fd7b9b2cdec57f9441f27a2"
-sha_sums["r14b"]="becd161da6ed9a823e25be5c02955d9cbca1dbeb"
-sha_sums["r13b"]="0600157c4ddf50ec15b8a037cfc474143f718fd0"
-sha_sums["r12b"]="170a119bfa0f0ce5dc932405eaa3a7cc61b27694"
-sha_sums["r11c"]="de5ce9bddeee16fb6af2b9117e9566352aa7e279"
 sha_sums["r10e"]="f692681b007071103277f6edc6f91cb5c5494a32"
+sha_sums["r11c"]="de5ce9bddeee16fb6af2b9117e9566352aa7e279"
+sha_sums["r12b"]="170a119bfa0f0ce5dc932405eaa3a7cc61b27694"
+sha_sums["r13b"]="0600157c4ddf50ec15b8a037cfc474143f718fd0"
+sha_sums["r14b"]="becd161da6ed9a823e25be5c02955d9cbca1dbeb"
+sha_sums["r15c"]="0bf02d4e8b85fd770fd7b9b2cdec57f9441f27a2"
+sha_sums["r16b"]="42aa43aae89a50d1c66c3f9fdecd676936da6128"
+sha_sums["r17c"]="12cacc70c3fd2f40574015631c00f41fb8a39048"
+sha_sums["r18b"]="500679655da3a86aecf67007e8ab230ea9b4dd7b"
 
 ndk_url="https://dl.google.com/android/repository/android-ndk-$NDK-linux-x86_64.zip"
-ndk_sha=${sha_sum[$NDK]}
+ndk_sha=${sha_sums[$NDK]}
+ndk_folder=$(basename "${ndk_url%-linux-x86_64.zip}")
 
-RUN wget -O ndk.zip --progress=dot:giga $ndk_url
+# Download and unzip NDK
+wget -O ndk.zip --progress=dot:giga "$ndk_url"
 
-RUN echo "$ndk_sha ndk.zip" | sha1sum -c
+echo "$ndk_sha ndk.zip" | sha1sum -c
 
-RUN unzip -q ndk.zip
+unzip -q ndk.zip
+
+# Make standalone toolchain
+declare -a args
+
+args+=("--platform=$PLATFORM")
+args+=("--toolchain=$TOOLCHAIN")
+args+=("--install-dir=/$PLATFORM-toolchain")
+args+=("--verbose")
+
+case "$NDK" in
+  r10e )
+   args+=("--system=linux-x86_64")
+   ;;
+  r13b)
+   ;&
+  r14b*)
+   ;&
+  r15c)
+   ;&
+  r16b)
+    # TODO: This won't work and python2 is already installed via the Dockerfile
+    # Test this.
+    apt-get -y install python
+    ;&
+esac
+
+/"$ndk_folder"/build/tools/make-standalone-toolchain.sh "${args[@]}"
