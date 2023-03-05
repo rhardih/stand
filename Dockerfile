@@ -28,7 +28,7 @@ ARG NDK_SHA=f692681b007071103277f6edc6f91cb5c5494a32
 ARG PLATFORM=android-21
 ARG TOOLCHAIN=arm-linux-androideabi-4.9
 
-RUN apt-get update && apt-get -y install \
+RUN apt update && apt -y install \
   file \
   wget \
   unzip \
@@ -42,6 +42,11 @@ RUN unzip -q ndk.zip
 
 COPY make-stc.sh make-stc.sh
 
+#ENV NDK_URL $NDK_URL
+#ENV NDK_SHA $NDK_SHA
+#ENV PLATFORM $PLATFORM
+#ENV TOOLCHAIN $TOOLCHAIN
+
 RUN /bin/bash ./make-stc.sh
 
 # Final stage
@@ -50,7 +55,7 @@ FROM ubuntu:latest
 
 ARG PLATFORM=android-21
 
-RUN apt-get update && apt-get -y install \
+RUN apt update && apt -y install \
   build-essential
 
 COPY --from=ndk /$PLATFORM-toolchain /$PLATFORM-toolchain
