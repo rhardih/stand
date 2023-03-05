@@ -1,0 +1,27 @@
+name: Build Image
+run-name: ${{ github.actor }} is building a stand image for NDK ${{ github.event.client_payload.ndk }} with platform ${{ github.event.client_payload.platform }} and toolchain ${{ github.event.client_payload.toolchain }}
+on:
+  repository_dispatch:
+    types: [on-demand-build-image]
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: rhardih/stand:${{ github.event.client_payload.ndk }}--${{ github.event.client_payload.platform }}--${{ github.event.client_payload.toolchain }}
+          build-args: |
+            NDK=${{ github.event.client_payload.ndk }}
+            PLATFORM=${{ github.event.client_payload.platform }}
+            TOOLCHAIN=${{ github.event.client_payload.toolchain }}
