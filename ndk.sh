@@ -66,17 +66,16 @@ case "$NDK" in
   r10e )
    args+=("--system=linux-x86_64")
    ;;
-  r13b)
-   ;&
-  r14b*)
-   ;&
-  r15c)
-   ;&
-  r16b)
-    # TODO: This won't work and python2 is already installed via the Dockerfile
-    # Test this.
-    apt-get -y install python
-    ;&
 esac
+
+# make-standalone-toolchain.sh relies on Python 2 being the default
+# `python`, but in later versions of Ubuntu, you're meant to target either
+# `python2` or `python3` directly.  Additionally the meta package for
+# `python` now points to `python3` by default, so this workaround is
+# necessary.
+#
+# Reference:
+# - https://github.com/rhardih/stand/issues/3
+ln -s /usr/bin/python2 /usr/bin/python
 
 /"$ndk_folder"/build/tools/make-standalone-toolchain.sh "${args[@]}"
